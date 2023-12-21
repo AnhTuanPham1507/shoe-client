@@ -1,0 +1,58 @@
+.registerForm{
+    width: 450px;
+    margin: 50px auto  ;
+
+    &__title{
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 1.5;
+        margin: 20px auto;
+        text-align: center;
+        font-family: SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+
+        
+    }
+    &__intro-text{
+        font-size: 16px;
+        text-align: center;
+    }
+    &__intro-link{
+        font-size: 16px;
+        text-align: center;
+    }
+    &__input{
+        border: 1px solid #d6d6d6;
+        box-shadow: none;
+        height: 49px;
+        color: #494949;
+        margin: 25px 0;
+        font-size: 17px;
+        border-radius: 10px;
+        padding-left: 20px;
+    }
+    &__notlink{
+        cursor: text;
+    }
+    &__link{
+        margin: 16px auto;
+        width: 450px;
+        text-align: center;
+        font-size: 15px;
+        cursor: pointer;
+        color: $main-color;
+    }
+    a:hover{
+        color: #111111 !important;
+    }
+    &__button{
+        background-color: $main-color;
+        width: 100%;
+        height: 49px;
+        border-radius: 10px;
+        font-size: 18px;
+        border: 1px solid $main-color;
+    }
+}
+h1{
+    font-weight: 600;
+}

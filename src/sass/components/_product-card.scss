@@ -1,0 +1,111 @@
+.product-card {
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: rgb(60 64 67 / 10%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+    border-radius: 3px;
+    position: relative;
+    overflow:hidden;
+
+    &:hover{
+        border: 1px solid $main-color;
+    }
+
+    &:hover &__image img{
+        transform: scale(1.2);
+        transition: transform 0.5s ease-in-out;  
+    }
+
+    &__image {
+        padding-top: 90%;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 30px;
+        width: 100%;
+
+        img {
+            position: absolute;
+            top: 0px;
+            left: 0%;
+            height: 100%;
+            width: 100%;
+
+        }
+    }
+
+    &__name {
+        color: $main-color;
+        margin: 0 10px 10px 10px;
+        font-size: 17px;
+        font-weight: normal;
+        font-weight: 500;
+        height: 1rem;
+    }
+
+    &__price {
+        color: #ee4d2d;
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-align: center;
+
+        &__old {
+            color: $txt-second-color;
+            margin-left: 0.5rem;
+            font-weight: 250;
+        }
+    }
+
+    &__btn {    
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-bottom: 0.5rem;
+
+        &-left {
+            background-color: #ff910d;
+            padding: 0.2rem;
+            position: relative;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin-left: 5px;
+
+           &::before {
+            position: absolute;
+            content: "";
+            left: 100%;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            border-left: 3px dashed #ff910d;
+          }
+          &:after {
+            position: absolute;
+            content: "";
+            right: 100%;
+            top: 0;
+            bottom: 0;
+            border-right: 3px dashed #ff910d;
+          }
+
+          p {
+            color: white;
+            margin: 0;
+           }
+
+        }
+
+        &-right {
+            icon {
+                border-radius: 50%;
+                background-color: #d5c0ec;
+                border: 1px white;
+                padding: 5px;
+                margin-right: 0.5rem;
+            } 
+        }
+
+        
+    }
+}

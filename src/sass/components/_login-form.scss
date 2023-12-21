@@ -1,0 +1,135 @@
+.loginForm{
+    width: 400px;
+    margin: 50px auto  ;
+
+    &__title{
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 1.5;
+        margin: 20px auto;
+        text-align: center;
+        font-family: SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+    }
+    &__input{
+        border: 1px solid #d6d6d6;
+        box-shadow: none;
+        height: 49px;
+        color: #494949;
+        margin: 25px 0;
+        font-size: 17px;
+        border-radius: 10px;
+        padding-left: 20px;
+    }
+    &__notlink{
+        cursor: text;
+    }
+    &__link{
+        margin: 16px auto;
+        width: 400px;
+        text-align: center;
+        font-size: 15px;
+        cursor: pointer;
+        
+
+        a{
+            color: $main-color;
+        }
+    }
+    a:hover{
+        color: #111111 !important;
+    }
+    &__button{
+        background-color: $main-color;
+        width: 100%;
+        padding: 12px ;
+        border-radius: 10px;
+        font-size: 18px;
+        border: 1px solid $main-color;
+    }
+}
+
+
+.forgotForm{
+    
+    border-right: 1px solid #d2d2d7;
+
+    &__title{
+        font-size: 31px;
+        font-weight: 600;
+        line-height: 1.5;
+        margin: 40px auto;
+        text-align: left;
+        font-family: SF Pro Display,SF Pro Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+    }
+    &__text{
+        font-weight: 400;
+        margin-bottom: -10px;
+    }
+    &__input{
+        border: 1px solid #d6d6d6;
+        box-shadow: none;
+        height: 49px;
+        color: #494949;
+        margin: 25px 0;
+        font-size: 17px;
+        border-radius: 10px;
+        padding-left: 20px;
+        width: 500px;
+    }
+    &__notlink{
+        cursor: text;
+    }
+    &__link{
+        margin: 16px auto;
+        width: 400px;
+        text-align: center;
+        font-size: 15px;
+        cursor: pointer;
+        
+
+        a{
+            color: $main-color;
+        }
+    }
+    a:hover{
+        color: #111111 !important;
+    }
+    &__button{
+        background-color: $main-color;
+        width: 500px;
+        padding: 12px ;
+        border-radius: 10px;
+        font-size: 18px;
+        border: 1px solid $main-color;
+    }
+}
+
+.desktop{
+
+    &__icon__sidebar{
+        
+        padding-left: 30px;
+        text-align: left;
+        display: flex;
+        
+        &__iconf{
+            background-image: url("https://appleid.cdn-apple.com/iforgot/static/bin/cb7953610/dist/assets/profile.svg");
+            background-position: 2px -107px;
+            background-repeat: no-repeat;
+            display: inline-block;
+            height: 60px;
+            width: 60px;
+            line-height: 30px;
+            vertical-align: middle;
+            background-size: 57px 271px;
+            margin-top: 5px;
+        }
+        &__caption{
+            padding-left: 20px;
+            color: #6e6e73;
+            width: 265px;
+            font-size: 14px;
+        }
+        
+    }
+}
