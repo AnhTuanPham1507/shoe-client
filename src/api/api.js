@@ -29,12 +29,16 @@ const partnerAPI = {
 }
 
 const productAPI = {
-  getAll: (query) => axi.get(`/api/v1/product?status[]=new&status[]=active&${query}`),
+  getAll: (query) => axi.get(`/api/v1/product?${query}`),
   getBySlug: (slug) => axi.get(`/api/v1/product/${slug}`)
 }
 
 const orderAPI = {
-  create: (payload) => axi.post('/api/v1/order', payload),
+  create: (payload, token) => axi.post('/api/v1/order', payload, {
+    headers: {
+      authorization: token
+    }
+  }),
   getAll: (queryParams, token) => axi.get(`/api/v1/order?${queryParams}`, {
     headers: {
       authorization: token

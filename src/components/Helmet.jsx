@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const Helmet = props => {
 
-    document.title =  props.title + ' - TechNova'
+document.title =  props.title;
 
     React.useEffect(() => {
         window.scrollTo(0,0)

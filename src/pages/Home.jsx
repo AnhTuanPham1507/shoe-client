@@ -46,7 +46,7 @@ const Home = () => {
     return (
         <Helmet title="Trang chủ">
         {/* hero slider */}
-        <HeroSlider data={banners} control={true} auto={false} timeOut={5000} />
+        <HeroSlider data={banners} control={true} auto={false} timeOut={5000} style={{height: '50em'}} />
         {/* end hero slider */}
 
         {/* policy section */}
@@ -66,8 +66,8 @@ const Home = () => {
             {
                 seasonalCategories.map(
                     seasonalCategory => (
-                        <Section>
-                            <SectionTitle>
+                        <Section style={{borderRadius: '10px', padding: '10px', backgroundColor: '#ffffff'}}>
+                            <SectionTitle >
                                 <Carousel indicators={false}>
                                     {
                                         seasonalCategory.images.map(
@@ -84,10 +84,10 @@ const Home = () => {
                                     }
                                  </Carousel>
                             </SectionTitle>
-                            <SectionBody>
+                            <SectionBody style={{ marginTop: '5px', borderRadius: '10px'}}>
                                 <Grid col={5} mdCol={3} smCol={2} gap={20}>
                                 {seasonalCategory.productIds.map((item) => (
-                                    <ProductCard key={item._id} item={item} />
+                                    <ProductCard key={item._id} item={item}/>
                                 ))}
                                 </Grid>
                             </SectionBody>
@@ -95,7 +95,7 @@ const Home = () => {
                     )
                 )
             }
-            <Section>
+            <Section style={{borderRadius: '10px', padding: '10px', backgroundColor: '#ffffff'}}>
                 <SectionTitle>
                     <h1 style={{textAlign: 'center'}}>Bài viết</h1>
                 </SectionTitle>

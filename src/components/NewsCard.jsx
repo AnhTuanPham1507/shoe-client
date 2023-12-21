@@ -14,7 +14,7 @@ const NewsCard = props => {
                 <img class="img_post" src={item.image.path} alt={'tin tức'} />
                 <div class="blog__item__text">
                     <span>{item.title}</span>
-                    <h5>{item.content}</h5>
+                    <h5>{item.shortDescription}</h5>
                     
                     <Link to={`/tin-tuc/${item._id}`}>Xem tin</Link>
                 </div>

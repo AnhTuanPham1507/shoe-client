@@ -125,7 +125,7 @@ const Checkout = () => {
                     }))        
                 }
 
-                const res = await orderAPI.create(createOrder)
+                const res = await orderAPI.create(createOrder, token)
                 dispatch(removeAll())
                 setSuccessfulMessage('Đặt hàng thành công. Cảm ơn bạn đã tin tưởng');
                 setTimeout(() => {

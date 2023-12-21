@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-import { partnerAPI, categoryAPI, productAPI } from '../api/api';
+import { partnerAPI, categoryAPI, productAPI, bannerAPI } from '../api/api';
 import Helmet from '../components/Helmet'
 import CheckBox from '../components/CheckBox'
 import InfinityList from '../components/InfinityList'
@@ -13,6 +13,7 @@ import useQuery from '../hooks/useQuery';
 import { useHistory } from 'react-router';
 import _ from 'lodash';
 import { useLocation } from "react-router-dom";
+import HeroSlider from '../components/HeroSlider';
 
 const Catalog = () => {
     const history = useHistory();
@@ -46,6 +47,8 @@ const Catalog = () => {
 
     const [partners, setPartners] = useState([])
 
+    const [banners, setBanners] = useState([]);
+
     const [pageCount, setPageCount] = useState(0)
 
     const [activePage, setActivePage] = useState(1)
@@ -70,10 +73,12 @@ const Catalog = () => {
             try {
                 const response = await Promise.all([
                     categoryAPI.getAll(),
-                    partnerAPI.getAll()
+                    partnerAPI.getAll(),
+                    bannerAPI.getAll()
                 ]);
             setCategories(response[0].data.data)
             setPartners(response[1].data.data)
+            setBanners(response[2].data.data);
             } catch (error) {
                 console.log(error)
             }
@@ -162,20 +167,13 @@ const Catalog = () => {
     return (
         <Helmet title="Sản phẩm">
             <Container>
-            <section className="breadcrumb-option">
+            <section className="breadcrumb-option" style={{paddingTop: '10px', paddingBottom: '0px'}}>
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
-                            <div className="breadcrumb__text">
-                                <h3>Sản phẩm</h3>
-                                <div className="breadcrumb__links">
-                                    <Link to="/">Trang chủ</Link>
-                                    <FontAwesomeIcon icon={faAngleRight} className="faAngleRight" />
-                                    <span>Sản phẩm</span>
-                                </div>
-                            </div>
-                        </div>
+                        <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/2bbcfa99737217.5ef9be3dbb9a9.jpg' alt="banner" style={{width: '100%', height: "20em", padding: '10px'}}/>
                     </div>
+                </div>
                 </div>
             </section>
             <div className="catalog">
@@ -231,6 +229,7 @@ const Catalog = () => {
                     <Button size="sm" onClick={() => showHideFilter()}>bộ lọc</Button>
                 </div>
                 <div className="catalog__content">
+
                     <InfinityList
                         products={products}                     
                     />

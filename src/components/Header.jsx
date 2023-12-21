@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Search from './Search'
 
@@ -11,6 +11,7 @@ import CartPre from './CartPre'
 import numberWithCommas from '../utils/numberWithCommas'
 import { removeToken } from '../redux/token/tokenSlice'
 import AleartPopup from './alert-popup'
+import { businessInfoAPI } from '../api/api'
 
 const mainNav = [
     {
@@ -40,6 +41,7 @@ const Header = () => {
             token: state.token.value
         }
     })
+    const [businessInfo, setBusinessInfo] = useState(null);
 
     const [showSearchForm, setShowSearchForm] = useState(false);
 
@@ -57,6 +59,19 @@ const Header = () => {
     const [title, setTitle] = useState(null);
     const [activeMessage, setActiveMessage] = useState(false);
     const [color, setColor] = useState(null);
+
+    useEffect(() => {
+        const getBusinessInfo = async () => {
+          try {
+            const getBusinessInfoRes = await businessInfoAPI.getOne();
+            setBusinessInfo(getBusinessInfoRes.data);
+          } catch (error) {
+            console.log(error);
+          }
+        }
+    
+        getBusinessInfo();
+      },[])
 
     function handleSearchFormShow() {
         setShowSearchForm(!showSearchForm)
@@ -88,7 +103,7 @@ const Header = () => {
             <div className="container">
                 <div className="header__logo">
                     <Link to="/">
-                        <img src={logo} alt="" />
+                        <img src={businessInfo?.logo.path} alt="" style={{width: '80px', height: '60px'}}/>
                     </Link>
                 </div>
                 <div className="header__menu">

@@ -37,7 +37,7 @@ const ProductCard = props => {
                         className="bx bx-show bx-sm"
                     /> */}
                     <icon
-                        className="bx bx-cart bx-sm"
+                        className="bx bx-show bx-sm"
                         onClick={() => dispatch(set(item.slug))}
                         />
                 </div>
