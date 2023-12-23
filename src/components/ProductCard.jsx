@@ -17,13 +17,13 @@ const ProductCard = props => {
         >
             <Link to={`/san-pham/${item.slug}`}>
                 <div className="product-card__image">
-                    <img width={200} height={200} src={item.images[0].values[0].path} alt={item.name} />
+                    <img width={200} height={200} src={item.images[0]?.values[0].path} alt={item.name} />
                 </div>
                 <h3 className="product-card__name">{item.name}</h3>
                 <div className="product-card__price">
-                    {numberWithCommas(item.details[0].price)}
+                    {numberWithCommas(item.details[0]?.price)}
                     <span className="product-card__price__old">
-                        <del>{numberWithCommas(item.details[0].price)}</del>
+                        <del>{numberWithCommas(item.details[0]?.price)}</del>
                     </span>
                 </div>
 

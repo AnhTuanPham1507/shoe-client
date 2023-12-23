@@ -18,7 +18,7 @@ function Order() {
     useEffect(() => {
         async function getOrders() {
             try {
-                const res = await orderAPI.getAll(`perPage=8&page=${activePage}`,token)
+                const res = await orderAPI.getAll(`perPage=8&page=${activePage}&sort=desc&sortBy=createdAt`,token)
                 const data = res.data.data
                 setOrders(data)
                 setPageCount(res.data.totalPage)
