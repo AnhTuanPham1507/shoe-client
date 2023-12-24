@@ -32,6 +32,8 @@ const CartForCheckout = () => {
                                 <div className="breadcrumb__links">
                                     <Link to="/">Trang chủ</Link>
                                     <FontAwesomeIcon icon={faAngleRight} className="faAngleRight" />
+                                    <Link to="/san-pham">Tiếp tục mua hàng</Link>
+                                    <FontAwesomeIcon icon={faAngleRight} className="faAngleRight" />
                                     <span>Thanh tóan</span>
                                 </div>
                             </div>

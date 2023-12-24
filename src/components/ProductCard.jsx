@@ -11,7 +11,7 @@ const ProductCard = props => {
     const dispatch = useDispatch()
 
     return (
-        item ?
+        item && item.details?.length > 0?
         <div 
             className="product-card"
         >
@@ -43,7 +43,7 @@ const ProductCard = props => {
                 </div>
             </div>
         </div>
-        : <div>loading</div>
+        : <div></div>
     )
 }
 

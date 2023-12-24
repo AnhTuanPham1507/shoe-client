@@ -4,7 +4,7 @@ import viLocale from "date-fns/locale/vi";
 const formatDate = (date) => {
     if (date) {
         const temp = new Date(date)
-        return `0${temp.getDate()}`.slice(-2) + '-' + `0${temp.getMonth() + 1}`.slice(-2) + '-' + temp.getFullYear()
+        return `0${temp.getDate()}`.slice(-2) + '-' + `0${temp.getMonth() + 1}`.slice(-2) + '-' + temp.getFullYear() + ' ' + temp.getHours() + ':' + `0${temp.getMinutes()}`.slice(-2)
     }
     else
         return "Đang chờ giao hàng"

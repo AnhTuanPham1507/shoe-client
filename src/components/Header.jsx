@@ -11,7 +11,7 @@ import CartPre from './CartPre'
 import numberWithCommas from '../utils/numberWithCommas'
 import { removeToken } from '../redux/token/tokenSlice'
 import AleartPopup from './alert-popup'
-import { businessInfoAPI } from '../api/api'
+import { businessInfoAPI, customerAPI } from '../api/api'
 
 const mainNav = [
     {
@@ -45,6 +45,8 @@ const Header = () => {
 
     const [showSearchForm, setShowSearchForm] = useState(false);
 
+    const [userInfo, setUserInfo] = useState(null);
+
     const { pathname } = useLocation()
 
     const activeNav = mainNav.findIndex(e => e.path === pathname)
@@ -72,6 +74,18 @@ const Header = () => {
     
         getBusinessInfo();
       },[])
+
+    useEffect(() => {
+    const getUserInfo = async () => {
+        try {
+        const getUserInfoRes = await customerAPI.getInfo(token);
+        setUserInfo(getUserInfoRes.data);
+        } catch (error) {
+        console.log(error);
+        }
+    }
+    if(token) getUserInfo();
+    },[token])
 
     function handleSearchFormShow() {
         setShowSearchForm(!showSearchForm)
@@ -187,6 +201,9 @@ const Header = () => {
                                                 <>
                                                     <Dropdown.Item as={Link} to="/cap-nhat-tai-khoan">
                                                         Xem thông tin
+                                                    </Dropdown.Item>
+                                                    <Dropdown.Item as={Link} to={`/cap-nhat-mat-khau?email=${userInfo?.email}`}>
+                                                        Đổi mật khẩu
                                                     </Dropdown.Item>
                                                     <Dropdown.Item as={Link} to="/don-hang">
                                                         Xem đơn hàng

@@ -29,7 +29,7 @@ const partnerAPI = {
 }
 
 const productAPI = {
-  getAll: (query) => axi.get(`/api/v1/product?${query}`),
+  getAll: (query) => axi.get(`/api/v1/product?statusArray[]=active&statusArray[]=hot&statusArray[]=new&${query}`),
   getBySlug: (slug) => axi.get(`/api/v1/product/${slug}`)
 }
 
