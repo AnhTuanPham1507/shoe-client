@@ -6,9 +6,7 @@ import CheckBox from '../components/CheckBox'
 import InfinityList from '../components/InfinityList'
 import ReactPaginate from 'react-paginate'
 import { Button, Container } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from '@mui/material';
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { FormControl, FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import useQuery from '../hooks/useQuery';
 import { useHistory } from 'react-router';
 import _ from 'lodash';
@@ -52,6 +50,12 @@ const Catalog = () => {
     const [pageCount, setPageCount] = useState(0)
 
     const [activePage, setActivePage] = useState(1)
+
+    const [fromPrice, setFormPrice] = useState(null);
+
+    const [toPrice, setToPrice] = useState(null);
+
+    const [selectedRangePrice, setSelectedRangePrice] = useState('0');
 
     useEffect(() => {
             const tempSelectedCategory = selectedCategory?.replace('-', ' ');
@@ -123,6 +127,9 @@ const Catalog = () => {
 
                 if(searchTerm && queryParams === '') queryParams += `name=${searchTerm}&`;
 
+                if(fromPrice) queryParams += `fromPrice=${fromPrice}&`
+                if(toPrice) queryParams += `toPrice=${toPrice}&`
+
                 const response = await productAPI.getAll(`${queryParams}perPage=8&page=${activePage}`);
                 setPageCount(response.data.totalPage)
                 setProducts(response.data.data)
@@ -132,7 +139,7 @@ const Catalog = () => {
             }
         }
         getProducts()
-    }, [filter,activePage, searchTerm])
+    }, [filter,activePage, searchTerm, fromPrice, toPrice])
 
     const handlePageClick = (event) => {
         setActivePage(event.selected + 1);
@@ -164,6 +171,34 @@ const Catalog = () => {
 
     const showHideFilter = () => filterRef.current.classList.toggle('active')
 
+    useEffect(() => {
+        switch(selectedRangePrice){
+            case '1': {
+                setFormPrice(0);
+                setToPrice(1000000);
+                break;
+            }
+            case '2': {
+                setFormPrice(1000000);
+                setToPrice(5000000);
+                break;
+            }
+            case '3': {
+                setFormPrice(5000000);
+                setToPrice(10000000);
+                break;
+            }
+            case "4": {
+                setFormPrice(10000000);
+                setToPrice(null);
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+    }, [selectedRangePrice])
+
     return (
         <Helmet title="Sản phẩm">
             <Container>
@@ -171,7 +206,7 @@ const Catalog = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
-                        <img src='https://mir-s3-cdn-cf.behance.net/project_modules/fs/2bbcfa99737217.5ef9be3dbb9a9.jpg' alt="banner" style={{width: '100%', height: "20em", padding: '10px'}}/>
+                        <HeroSlider data={banners} control={false} auto={false} timeOut={5000} style={{height: '20em'}} />
                     </div>
                 </div>
                 </div>
@@ -220,6 +255,27 @@ const Catalog = () => {
                     </div>
 
                     <div className="catalog__filter__widget">
+                        <div className="catalog__filter__widget__title">
+                            Mức giá
+                        </div>
+                        <div className="catalog__filter__widget__content">
+                            <FormControl>
+                                <RadioGroup
+                                    aria-labelledby="demo-controlled-radio-buttons-group"
+                                    name="controlled-radio-buttons-group"
+                                    value={selectedRangePrice}
+                                    onChange={(e) => setSelectedRangePrice(e.target.value)}
+                                >
+                                    <FormControlLabel value="1" control={<Radio />} label="0đ - 1.000.000đ" />
+                                    <FormControlLabel value="2" control={<Radio />} label="1.000.000đ - 5.000.000đ" />
+                                    <FormControlLabel value="3" control={<Radio />} label="5.000.000đ - 10.000.000đ" />
+                                    <FormControlLabel value="4" control={<Radio />} label="Trên 10.000.000đ" />
+                                </RadioGroup>
+                            </FormControl>
+                        </div>
+                    </div>
+
+                    <div className="catalog__filter__widget">
                         <div className="catalog__filter__widget__content">
                             <Button size="sm" onClick={clearFilter}>xóa bộ lọc</Button>
                         </div>
@@ -229,7 +285,6 @@ const Catalog = () => {
                     <Button size="sm" onClick={() => showHideFilter()}>bộ lọc</Button>
                 </div>
                 <div className="catalog__content">
-
                     <InfinityList
                         products={products}                     
                     />

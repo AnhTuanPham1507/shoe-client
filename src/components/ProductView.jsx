@@ -27,6 +27,8 @@ const ProductView = props => {
 
     const [selectedProductDetail, setSelectedProductDetail] = useState(null);
 
+    const [rating, setRating] = useState([]);
+
     const [message, setMessage] = useState(null);
     const [title, setTitle] = useState(null);
     const [activeMessage, setActiveMessage] = useState(false);
@@ -249,6 +251,7 @@ const ProductView = props => {
             </div>
             <div className="product-description__content" dangerouslySetInnerHTML={{__html: product.description}}></div>
         </div>
+
         </>
         :
         <div>loading</div>

@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import ProductCard from '../components/ProductCard'
 import Grid from '../components/Grid'
+import RatingView from '../components/rating-view';
 
 const Product = props => {
 
@@ -45,6 +46,9 @@ const Product = props => {
                         <ProductView product={product}/>
                     </SectionBody>
                 </Section>
+                <RatingView 
+                    product={product}
+                />
                 <Section>
                     <SectionTitle>
                         <h1 style={{textAlign: 'center'}}>Khám phá thêm</h1>
@@ -62,7 +66,6 @@ const Product = props => {
                         </Grid>
                     </SectionBody>
                 </Section>
-                
             </Container>
         </Helmet>
         : <div className="loading-screen"></div>

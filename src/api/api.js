@@ -72,7 +72,18 @@ const contactAPI = {
   contact: (payload) => axi.post('/api/v1/contact', payload)
 }
 
+const ratingAPI = {
+  getByOrder: (orderId) => axi.get(`/api/v1/rating/order/${orderId}`),
+  getByProduct: (productId) => axi.get(`/api/v1/rating/product/${productId}`),
+  update: (id, payload, token) => axi.patch(`/api/v1/rating/${id}`, payload, {
+    headers: {
+      authorization: token
+    }
+  })
+}
+
 export {
+  ratingAPI,
   bannerAPI,
   seasonalCategoryAPI,
   blogAPI,

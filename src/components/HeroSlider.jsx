@@ -6,7 +6,10 @@ const HeroSlider = (props) => {
   const data = props.data;
 
   return (
-    <Carousel >
+    <Carousel
+     controls={props.control} 
+     indicators={false}
+   >
       {data.map((item) => (
         <Carousel.Item id={item.id}  style={props.style}>
           <img
