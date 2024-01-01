@@ -99,6 +99,7 @@ const Header = () => {
     function handleLogout() {
         dispatch(removeToken())
         setSuccessfulMessage('Hẹn gặp lại!')
+        history.push('/dang-nhap');
     }
 
     const setSuccessfulMessage = (_message) => {

@@ -95,7 +95,7 @@ function RatingViewModal(props) {
     async function handleUpdateComment(){
         try {
             if(validateRatingPayload()){
-                await ratingAPI.update(ratingId, {content, ratingStar: star, productIds: ratingProducts}, token);
+                await ratingAPI.update(ratingId, {content, ratingStar: star, productIds: ratingProducts, status: 'rated'}, token);
                 setSuccessfulMessage('Cảm ơn bạn đã dành thời gian đánh giá sản phẩm của chúng tôi');
                 setTimeout(() => {
                     handleClose();

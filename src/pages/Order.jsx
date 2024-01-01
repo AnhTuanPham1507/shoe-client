@@ -36,8 +36,10 @@ function Order() {
     useEffect(() => {
         async function getRating() {
             try {
+                console.log(orders[0]._id)
                 const res = await ratingAPI.getByOrder(orders[0]._id);
-                const data = res.data;
+                const data = res.data;    
+                console.log(data)
                 setRating(data);
                 if(data?.status === 'new') setIsShowRatingModal(true);
             } catch (error) {

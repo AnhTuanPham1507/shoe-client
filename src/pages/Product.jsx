@@ -36,7 +36,6 @@ const Product = props => {
         getProduct()
     },[slug])
 
-
     return (
         product ?
         <Helmet title={product.name}>

@@ -59,6 +59,7 @@ const Checkout = () => {
                 console.log(error);
             }
         }
+        
         getUserInfo()
     }, [token, history])
 

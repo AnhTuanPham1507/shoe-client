@@ -73,7 +73,7 @@ function Login() {
                 setSuccessfulMessage(`Đăng nhập thành công, chào mừng bạn`);
                 dispatch(addToken(response.accessToken))
                 setTimeout(() => {
-                    history.push('/')
+                    history.goBack()
                 }, 1000)
             }
             catch (error) {
