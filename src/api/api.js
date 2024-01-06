@@ -1,4 +1,5 @@
 import axios from 'axios';
+import _ from 'lodash';
 
 const axi =  axios.create({
   baseURL: `http://localhost:3003`
@@ -35,9 +36,9 @@ const productAPI = {
 
 const orderAPI = {
   create: (payload, token) => axi.post('/api/v1/order', payload, {
-    headers: {
+    headers: _.omitBy({
       authorization: token
-    }
+    }, _.isNil)
   }),
   getAll: (queryParams, token) => axi.get(`/api/v1/order?${queryParams}`, {
     headers: {

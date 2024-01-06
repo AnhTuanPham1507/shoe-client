@@ -39,17 +39,9 @@ const Checkout = () => {
     const [color, setColor] = useState(null);
 
     useEffect(() => {
-        if (!token){
-            setErrorMessage('Vui lòng đăng nhập để tiến hành thanh toán', 'Không thể thanh toán')
-            setTimeout(() => {
-                history.push('/dang-nhap')
-            }, 2500)
-        }
-
         async function getUserInfo() {
             try {
                 const res = await customerAPI.getInfo(token)
-                console.log(res)
                 const user = res.data
                 setReceiverPhone(user.phone)
                 setReceiverEmail(user.email)
@@ -61,7 +53,7 @@ const Checkout = () => {
         }
         
         getUserInfo()
-    }, [token, history])
+    }, [token])
 
     const setErrorMessage = (_message, _title) => {
         setTitle(_title || 'Đặt hàng thất bại');
@@ -125,11 +117,15 @@ const Checkout = () => {
                         productId: item.productId
                     }))        
                 }
-
                 const res = await orderAPI.create(createOrder, token)
                 dispatch(removeAll())
                 setSuccessfulMessage('Đặt hàng thành công. Cảm ơn bạn đã tin tưởng');
                 setTimeout(() => {
+                    if(!token){
+                        history.push('/')
+                        return;
+                    }
+
                     if (paymentMethod === 'in_person') {
                         history.push(res.data.redirectUrl)
                     } else {
